@@ -50,3 +50,6 @@ hs_err_pid*
 hs_err_pid*
 .xml
 
+__pycache__/
+config/__pycache__/
+
