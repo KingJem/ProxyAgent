@@ -2,6 +2,7 @@
   <dictionary name="yons">
     <words>
       <w>baidu</w>
+      <w>djangoblog</w>
       <w>getall</w>
       <w>gunicorn</w>
       <w>unsuccesful</w>

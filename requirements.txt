@@ -1,3 +1,5 @@
+redis
+apscheduler
 requests
 click
 aiohttp
