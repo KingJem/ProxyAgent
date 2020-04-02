@@ -1,3 +1,4 @@
+aioredis
 redis
 apscheduler
 requests
