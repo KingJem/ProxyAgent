@@ -3,11 +3,10 @@ DATABASE = {
 }
 
 CRAWLER = {
-    "crawler": {
 
-    },
-    "tester": {
-
+    "crawler1": {
+        "type": 'asyncio',
+        "name": "enc"
     }
 
 }
@@ -15,7 +14,7 @@ CRAWLER = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':  'djangoblog',
+        'NAME': 'djangoblog',
         'USER': 'root',
         'PASSWORD': 'King9503',
         'HOST': '127.0.0.1',
@@ -23,3 +22,5 @@ DATABASES = {
         'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
+
+NAME = "KING"

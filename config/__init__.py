@@ -1,6 +1,9 @@
 import os
 import importlib
+import sys
+
 from config import global_settings
+
 
 
 class Settings(object):
@@ -10,7 +13,7 @@ class Settings(object):
                 k = setting
                 v = getattr(global_settings, setting)
                 setattr(self, k, v)
-        mod = os.environ.get('global_settings')
+        mod = os.environ.get('ProxyAgent_SETTINGS_MODULE')
         module = importlib.import_module(mod)
 
         for setting in dir(module):

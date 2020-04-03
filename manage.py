@@ -4,6 +4,10 @@ import click
 import sys
 import platform
 
+
+BASE_DIR = os.path.dirname(__file__)
+sys.path.append(BASE_DIR)
+
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
 
@@ -29,6 +33,9 @@ def api():
 
 
 if __name__ == '__main__':
-    os.environ.setdefault("ProxyAgent_SETTINGS_MODULE", "ProxyAgent.settings")
+    os.environ.setdefault("ProxyAgent_SETTINGS_MODULE", "settings")
+    from config import settings
 
-    cli()
+    print(settings.NAME)
+
+    # cli()
