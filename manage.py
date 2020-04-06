@@ -32,6 +32,8 @@ def api():
         click.echo('other')
 
 
+
+
 if __name__ == '__main__':
     os.environ.setdefault("ProxyAgent_SETTINGS_MODULE", "settings")
     from config import settings

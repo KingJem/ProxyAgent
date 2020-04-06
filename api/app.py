@@ -1,50 +1,58 @@
-from flask import Flask, jsonify, Response, render_template
+import os
+import sys
 
-app = Flask(__name__)
+from flask import Flask, jsonify, Response, render_template, session, request
+from flask_script import Manager
+from flask_sqlalchemy import SQLAlchemy
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(BASE_DIR)
 
+from api.views.tag import tags
+from api.views.api import api
 
-class JSONResponse(Response):
-    """
-    # 自定义flask类中的Response对象的格式
-    """
-
-    @classmethod
-    def force_type(cls, response, environ=None):
-        if isinstance(response, dict):
-            response = jsonify(response)
-            # jsonify除了将字典转换成json对象，还将把对象包装成一个Response对象
-            return super(JSONResponse, cls).force_type(response, environ)
+app = Flask(__name__)  # 创建一个Flask app对象
 
 
-app.response_class = JSONResponse
+# 数据库链接的配置，此项必须，格式为（数据库+驱动://用户名:密码@数据库主机地址:端口/数据库名称）
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456@localhost:3306/flask_ttc'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # 跟踪对象的修改，在本例中用不到调高运行效率，所以设置为False
+db = SQLAlchemy(app=app)  # 为哪个Flask app对象创建SQLAlchemy对象，赋值为db
+# manager = Manager(app=app)  # 初始化manager模块
 
 
-@app.route('/')
+# class JSONResponse(Response):
+#     """
+#     # 自定义flask类中的Response对象的格式
+#     """
+#
+#     @classmethod
+#     def force_type(cls, response, environ=None):
+#         if isinstance(response, dict):
+#             response = jsonify(response)
+#             # jsonify除了将字典转换成json对象，还将把对象包装成一个Response对象
+#             return super(JSONResponse, cls).force_type(response, environ)
+#
+#
+# app.response_class = JSONResponse
+
+#
+# @app.before_request
+# def process_request(*args, **kwargs):
+#     if request.user_agent == "PostmanRuntime/7.21.0":
+#         session['is_api'] = '0'
+#     else:
+#         session['is_api'] = '1'
+
+
+app.route('/')
 def index():
-    return
+    return 'index'
 
 
-@app.route('/get')
-def get():
-    """
-    return a random proxy
-    返回一个随机可用的代理
-    """
-    pass
+app.register_blueprint(tags)
+app.register_blueprint(api)
 
-
-@app.route('/get_all')
-def getall():
-    """
-    返回一个随机
-    """
-    pass
-
-
-@app.route('/status')
-def status():
-    pass
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

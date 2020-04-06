@@ -4,9 +4,11 @@ DATABASE = {
 
 CRAWLER = {
 
-    "crawler1": {
+    "enc_proxy": {
         "type": 'asyncio',
-        "name": "enc"
+        "func": "enc",
+        "trigger": 'cron',
+        'second': '*/5'
     }
 
 }
@@ -24,3 +26,24 @@ DATABASES = {
 }
 
 NAME = "KING"
+
+SCHEDULER_ARGS = {
+    'apscheduler.jobstores.mongo': {
+         'type': 'mongodb'
+    },
+    'apscheduler.jobstores.default': {
+        'type': 'sqlalchemy',
+        'url': 'sqlite:///jobs.sqlite'
+    },
+    'apscheduler.executors.default': {
+        'class': 'apscheduler.executors.pool:ThreadPoolExecutor',
+        'max_workers': '20'
+    },
+    'apscheduler.executors.processpool': {
+        'type': 'processpool',
+        'max_workers': '5'
+    },
+    'apscheduler.job_defaults.coalesce': 'false',
+    'apscheduler.job_defaults.max_instances': '3',
+    'apscheduler.timezone': 'UTC',
+}

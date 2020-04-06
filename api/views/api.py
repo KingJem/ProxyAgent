@@ -1,17 +1,33 @@
 from flask import Blueprint, session
 from flask import render_template, request
 
-api = Blueprint('tag', __name__, url_prefix='api', template_folder='api')
+api = Blueprint('api', __name__, url_prefix='/api', template_folder='api')
+
+
 
 
 @api.route('/')
-def tag_relative():
-    return render_template('tag.html')
+def index():
+    return
 
 
-@api.before_request
-def process_request(*args, **kwargs):
-    if request.user_agent == "PostmanRuntime/7.21.0":
-        session['is_api'] = '0'
-    else:
-        session['is_api'] = '1'
+@api.route('/get')
+def get():
+    """
+    return a random proxy
+    返回一个随机可用的代理
+    """
+    pass
+
+
+@api.route('/get_all')
+def getall():
+    """
+    返回一个随机
+    """
+    pass
+
+
+@api.route('/status')
+def status():
+    pass
