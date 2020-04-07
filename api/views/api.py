@@ -1,5 +1,4 @@
-from flask import Blueprint, session
-from flask import render_template, request
+from flask import Blueprint
 
 api = Blueprint('api', __name__, url_prefix='/api', template_folder='api')
 

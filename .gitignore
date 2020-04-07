@@ -13,6 +13,6 @@ hs_err_pid*
 .xml
 
 __pycache__/
-config/__pycache__/
+configs/__pycache__/
 .idea/
 tttt.py

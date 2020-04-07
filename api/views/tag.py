@@ -4,7 +4,6 @@ import sys
 from flask import Blueprint
 from flask import render_template
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(BASE_DIR)
 

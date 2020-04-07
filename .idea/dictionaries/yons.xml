@@ -8,7 +8,12 @@
       <w>getall</w>
       <w>gevent</w>
       <w>gunicorn</w>
+      <w>jobstores</w>
+      <w>moudle</w>
+      <w>processpool</w>
+      <w>sqlalchemy</w>
       <w>unsuccesful</w>
+      <w>usefulproxy</w>
       <w>zhihu</w>
     </words>
   </dictionary>

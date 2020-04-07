@@ -1,9 +1,7 @@
-import os
 import importlib
-import sys
+import os
 
-from config import global_settings
-
+from configs import global_settings
 
 
 class Settings(object):

@@ -9,7 +9,7 @@ print(BASE_DIR)
 sys.path.append(BASE_DIR)
 os.environ.setdefault('global_settings', 'settings')
 
-from config import settings
+from configs import settings
 
 print(settings.NAME)
 print(settings.AGE)

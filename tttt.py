@@ -1,13 +1,11 @@
-import importlib
 import os
 import sys
-import threading
 
 BASE_DIR = os.path.dirname(__file__)
 sys.path.append(BASE_DIR)
 
 os.environ.setdefault('ProxyAgent_SETTINGS_MODULE', 'settings')
-from config import settings
+from configs import settings
 
 print(settings.NAME)
 
@@ -36,9 +34,6 @@ import sys
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(BASE_DIR)
 os.environ.setdefault('ProxyAgent_SETTINGS_MODULE', 'settings')
-from config import settings
-
-import importlib
 
 
 

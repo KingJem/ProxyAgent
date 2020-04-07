@@ -6,3 +6,27 @@
 4. 支持http 和https的代理验证
 5. 根据不同的标签返回数据
 6. 根据配置信息可以爬取做到定时爬取和爬取间隔配置
+
+
+
+# 初始化db
+
+```python 
+python manage.py shell
+>> from app import db
+>> db.create_all()
+```
+
+# 启动服务
+
+``` python
+python manage.py runserver -h 0.0.0.0 -p 8888
+#其他参数
+python manage.py runserver -?
+```
+
+# 配置数据库
+``` python
+`SQLALCHEMY_DATABASE_URI = 'mysql://user:password@host:port/dbname'`
+```
+
