@@ -19,6 +19,7 @@ class SingletonScheduler(metaclass=ThreadSafeSingleton):
     def __init__(self, _type):
         self._type = _type
         map = {
+            'background': 'BackgroundScheduler',
             "asyncio": "AsyncIOScheduler",
             'gevent': "GeventScheduler",
             'tornado': 'TornadoScheduler',

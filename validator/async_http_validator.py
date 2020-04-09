@@ -38,3 +38,4 @@ if __name__ == '__main__':
     print(total_time)
 
 # 错误处理,减分策略
+

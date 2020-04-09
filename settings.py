@@ -29,7 +29,7 @@ NAME = "KING"
 
 SCHEDULER_ARGS = {
     'apscheduler.jobstores.mongo': {
-         'type': 'mongodb'
+        'type': 'mongodb'
     },
     'apscheduler.jobstores.default': {
         'type': 'sqlalchemy',
@@ -47,3 +47,13 @@ SCHEDULER_ARGS = {
     'apscheduler.job_defaults.max_instances': '3',
     'apscheduler.timezone': 'UTC',
 }
+
+TEST = {
+    # 'async_http_validator': {"type": 'asyncio', 'func': 'enc', 'crawler_args': {"trigger": 'cron', 'second': '*/20'}},
+    'ttttt': {'type': 'background', 'func': 'ttt', 'crawler_args': {"trigger": 'cron', 'second': '*/2'}}
+
+}
+
+# 文件名字是必须的
+# 函数名字是必须的
+# 参数是必须的
