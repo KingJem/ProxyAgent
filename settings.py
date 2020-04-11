@@ -1,6 +1,13 @@
-DATABASE = {
+import os
 
-}
+SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
+SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+
+DEBUG = True
+HOST = '0.0.0.0'
+JSON_AS_ASCII = True
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:King9503@127.0.0.1:3306/test'
+SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 CRAWLER = {
 
@@ -12,20 +19,6 @@ CRAWLER = {
     }
 
 }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djangoblog',
-        'USER': 'root',
-        'PASSWORD': 'King9503',
-        'HOST': '127.0.0.1',
-        'PORT': 3306,
-        'OPTIONS': {'charset': 'utf8mb4'},
-    }
-}
-
-NAME = "KING"
 
 SCHEDULER_ARGS = {
     'apscheduler.jobstores.mongo': {
@@ -54,6 +47,3 @@ TEST = {
 
 }
 
-# 文件名字是必须的
-# 函数名字是必须的
-# 参数是必须的

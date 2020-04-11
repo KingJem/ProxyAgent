@@ -4,6 +4,7 @@
       <w>apscheduler</w>
       <w>asyncio</w>
       <w>baidu</w>
+      <w>crwaler</w>
       <w>djangoblog</w>
       <w>getall</w>
       <w>gevent</w>

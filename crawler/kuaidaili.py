@@ -1,11 +1,16 @@
+import os
+import sys
+
 url = "https://www.kuaidaili.com/free/inha/"
 
 import requests
 from bs4 import BeautifulSoup
 from lxml import html
+from apis.models import db
+from apis.models import RawProxy
 
-from api.models.proxy import RawProxy
-from manage import db
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+sys.path.append(BASE_DIR)
 
 try:
     response = requests.get(url, timeout=10)
@@ -27,7 +32,4 @@ for item in result.tbody.find_all('tr'):
     ip_record = RawProxy(ip=ip, port=port, type=1, server_area=server_area, res_time=float(res_time),
                          last_confirm=last_confirm, protocol=protocol)
     db.session.add(ip_record)
-db.session.commit()
-
-# for td in tr.html.path('//td'):
-#     print(td.text)
+    db.session.commit()

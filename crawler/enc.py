@@ -2,7 +2,7 @@
 
 # http://www.site-digger.com/html/articles/20110516/proxieslist.html
 from requests_html import HTMLSession
-# from api.models.proxy import RawProxy
+# from apis.models.proxy import RawProxy
 
 session = HTMLSession()
 r = session.get('http://www.site-digger.com/html/articles/20110516/proxieslist.html')

@@ -1,55 +1,49 @@
-# import os
-#
-# import click
-# import sys
-# import platform
-#
-#
-# BASE_DIR = os.path.dirname(__file__)
-# sys.path.append(BASE_DIR)
-#
-# CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
-#
-#
-# @click.group(context_settings=CONTEXT_SETTINGS)
-# def cli():
-#     """ProxyPool cli工具"""
-#     pass
-#
-#
-# @cli.command(name='schedule')
-# def schedule():
-#     click.echo('schedule')
-#
-#
-# @cli.command(name='api')
-# def api():
-#     click.echo('api')
-#     if platform.system() == 'Windows':
-#         click.echo('run on windows')
-#     else:
-#         # runFlaskWithGunicorn()
-#         click.echo('other')
-
-
 import os
+import platform
+import sys
+
+BASE_DIR = os.path.dirname(__file__)
+sys.path.append(BASE_DIR)
 
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
-from flask_sqlalchemy import SQLAlchemy
+from apis import app, db
+from apis.views.tag import tag_bp
+from apis.views.api import api
 
-from api import create_app
+app.register_blueprint(tag_bp)
+app.register_blueprint(api)
 
-# from api.models.proxy import RawProxy, UsefulProxy
+# from apis.models import RawProxy, UsefulProxy
 
-app = create_app(os.getenv('FLASK_CONFIG') or 'default')
-db = SQLAlchemy(app)
 manager = Manager(app)
 migrate = Migrate(app, db)
+
+
+@manager.command
+def runapi():
+    print('api server is starting ')
+    if platform.system() == 'Windows':
+        print('run on windows')
+    else:
+        # runFlaskWithGunicorn()
+        pass
+
+
+@manager.command
+def schedule():
+    print('schedule is starting')
+
+
+@manager.command
+def runcralwer():
+    print('crawlers is starting')
+
 
 manager.add_command("db", MigrateCommand)
 
 if __name__ == '__main__':
+    os.environ.setdefault("ProxyAgent_SETTINGS_MODULE", "settings")
     manager.run()
 
 #

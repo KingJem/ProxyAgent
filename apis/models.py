@@ -3,7 +3,7 @@ import sys
 
 from sqlalchemy_utils import ChoiceType
 
-from manage import db
+from apis import db
 
 BASE_DIR = os.path.dirname(__file__)
 sys.path.append(BASE_DIR)
@@ -23,6 +23,9 @@ class BaseModel(db.Model):
     last_confirm = db.Column(db.DATETIME)
     type_choice = ((1, '高匿'), (2, '匿名'), (3, '透明'))
     type = db.Column(ChoiceType(type_choice), nullable=True),
+
+    def to_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
 class RawProxy(BaseModel):

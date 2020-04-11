@@ -30,3 +30,13 @@ python manage.py runserver -?
 `SQLALCHEMY_DATABASE_URI = 'mysql://user:password@host:port/dbname'`
 ```
 
+
+
+# 遇到的问题
+   1. apscheduler 虽然有可以支持异步的调度器,但是本身sqlalchemy 不支持异步,有支持异步
+   orm框架可以使用,但是在视图函数中的使用orm查询数据的时候,会出现同步的视图函数步骤和异步的
+   orm 操作,这样Python解释器就会把异步的代码全部变成同步的代码,最后异步函数就相当于没有写一样
+   2. 使用requests+gevent 或者多进程多线程的方式加速爬取,加速验证
+   3. flask 的orm框架依赖flask的上下文来运行db运行会丢失上下文环境,sqlalchemy 的实例化在不同的地方被导入
+   导致程序运行的时候循环导入
+ 
