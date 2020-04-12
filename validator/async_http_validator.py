@@ -1,41 +1,42 @@
 import asyncio
-import time
 
 import aiohttp
-import aioredis
 from aiohttp import ClientSession
+from fake_useragent import UserAgent
 
-timeout = aiohttp.ClientTimeout(10)
-start = time.time()
+from settings import VALIDATOR_TIMEOUT
+from utils.utils import random_target_web
 
-async def get_proxy():
-    redis = await aioredis.create_redis(('localhost', 6379))
-    proxies = await redis.smembers('raw_proxy')
+timeout = aiohttp.ClientTimeout(VALIDATOR_TIMEOUT)
 
-    return proxies
+header = {"User-Agent": UserAgent().random}
 
 
-async def verify_proxy():
+async def get_ip_port(**kwargs):
+    pass
+
+
+async def verify_proxy(**kwargs):
     async with ClientSession() as session:
-        proxies = await get_proxy()
-        for i in proxies:
-            i = str(i, encoding='utf-8')
-            proxy = "http://" + i
-            try:
-                async with session.get("http://httpbin.org/ip", proxy=proxy, timeout=timeout) as response:
-                    response = await response.read()
-                    # print(str(response, encoding='utf-8'))
-            except asyncio.TimeoutError:
-                pass
-            except Exception as e:
-                pass
+        try:
+            async with session.get(url=random_target_web, timeout=VALIDATOR_TIMEOUT, header=header) as response:
+                if response.statuscode == 200:
+                    # 爬虫入库操作
+                    pass
+
+
+        except asyncio.TimeoutError:
+            # 删除爬虫操作
+            pass
+        except Exception as e:
+            pass
+
+
+async def main():
+
 
 if __name__ == '__main__':
-
     asyncio.run(verify_proxy())
-    end = time.time()
-    total_time = end-start
-    print(total_time)
 
-# 错误处理,减分策略
-
+# 从爬虫那边获取代理
+#

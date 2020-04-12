@@ -6,7 +6,7 @@ SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 DEBUG = True
 HOST = '0.0.0.0'
 JSON_AS_ASCII = True
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:King9503@127.0.0.1:3306/test'
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:King9503@127.0.0.1:3306/test?charset=utf8mb4'
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 CRAWLER = {
@@ -47,3 +47,9 @@ TEST = {
 
 }
 
+RANDOM_TARGET_WEB = [
+    "http://baicu.com",
+    "http://yun.baidu.com",
+]
+
+VALIDATOR_TIMEOUT = 10

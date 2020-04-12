@@ -27,7 +27,7 @@ python manage.py runserver -?
 
 # 配置数据库
 ``` python
-`SQLALCHEMY_DATABASE_URI = 'mysql://user:password@host:port/dbname'`
+`SQLALCHEMY_DATABASE_URI = 'mysql://user:password@host:port/dbname?charset=utf8mb4'`
 ```
 
 
@@ -39,4 +39,13 @@ python manage.py runserver -?
    2. 使用requests+gevent 或者多进程多线程的方式加速爬取,加速验证
    3. flask 的orm框架依赖flask的上下文来运行db运行会丢失上下文环境,sqlalchemy 的实例化在不同的地方被导入
    导致程序运行的时候循环导入
+   4. sqlalchemy 中的choicetype 类型在创建数据的时候没有该列,查询该数据的时候完全空值
+   5. 在sqlalchemy 中创建联合唯一会有警告,但是不影响ORM的正常使用
+   6. 使用orm创建的联合唯一在mysql没有生效还是有重复的数据
  
+ # 解决的问题
+ pymysql 连接本地的mysql 8.0的时候会遇到3719的问题 在连接数据库的URI上指定字符集就可以解决这个警告⚠️
+ 工厂类创建app的时候有循环导入的问题,执行时缺少上下文
+ 
+ 解决了tag api中的由于类型_type参数是不是None 值造成的返回结果错误的问题
+ 由于sqlalchemy 中的choicetype 创建不了了相对的数据行 创建了两个冗余的行来进行类型标识

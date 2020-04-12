@@ -43,14 +43,4 @@ def runcralwer():
 manager.add_command("db", MigrateCommand)
 
 if __name__ == '__main__':
-    os.environ.setdefault("ProxyAgent_SETTINGS_MODULE", "settings")
     manager.run()
-
-#
-# if __name__ == '__main__':
-#     os.environ.setdefault("ProxyAgent_SETTINGS_MODULE", "settings")
-#     from configs import settings
-#
-#     print(settings.NAME)
-#
-#     # cli()

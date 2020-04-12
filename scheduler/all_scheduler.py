@@ -7,7 +7,7 @@ sys.path.append(BASE_DIR)
 validator_crawler_path = os.path.join(os.path.dirname(BASE_DIR), 'validator')
 
 os.environ.setdefault('ProxyAgent_SETTINGS_MODULE', 'settings')
-from configs import settings
+import settings
 
 from scheduler import SingletonScheduler
 
